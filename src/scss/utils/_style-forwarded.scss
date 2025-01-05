@@ -1,0 +1,7 @@
+// @forward "mixin";
+// @forward "varibles";
+
+// Прячет стиль
+// @forward "varibles" hide $active;
+// Показывает стиль - один из всех
+// @forward "varibles" show $active;

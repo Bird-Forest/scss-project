@@ -1,0 +1,20 @@
+// Function statement
+@use "sass:math";
+
+@function strip-unit($value) {
+  @if type-of($value) != "number" {
+    @error "#{$value} is not a number";
+  }
+  @if type-of($value) == "number" and not unitless($value) {
+    // div - операція ділення, перший параметр це число з вимірами (рх, ем), другий параметр в езультаті 1рх (або інша одиниця), таким чином функція повертає число без одиниць виміру
+    @return math.div($value, ($value * 0 + 1));
+  }
+  //   Якщо виконався return в середені @if , то сфункція зупиниться і слідуючий return виконуватися не буде.
+  @return $value;
+}
+
+// @debug strip-unit(24px);
+
+@function rem($px-value, $base-font-saze: 16px) {
+  @return #{math.div(strip-unit($px-value), strip-unit($base-font-saze))}rem;
+}
